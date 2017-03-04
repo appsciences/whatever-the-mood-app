@@ -15,32 +15,47 @@ import Layout from '../constants/Layout';
 import { RegularText, BoldText } from './StyledText';
 import formatTime from '../util/formatTime';
 
-export default class BreweryListItem extends React.Component {
+export default class ActivityListItem extends React.Component {
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.brewery !== this.props.brewery;
+    return nextProps.item !== this.props.item;
   }
 
   render() {
     let {
       smallLogo,
       name,
-    } = this.props.brewery;
+        summary,
+        description
+    } = this.props.item;
+
+    const dot =
+
+        <View style={styles.availableDotContainer}>
+          <FadeIn placeholderStyle={{backgroundColor: Platform.OS === 'android' ? 'transparent' : '#eee'}}>
+            <MaterialIcons name="fiber-manual-record" size={20} color={this.props.index % 3 ? "green" : "gray"} style={{
+              margin: 0
+            }}/>
+          </FadeIn>
+        </View>;
+
 
     return (
       <TouchableNativeFeedback
-        delayPressIn={80}
-        onPress={this.props.onPress}
+        onPress={this.props.type !== 'community' ? this.props.onPress : undefined}
         delayPressIn={80}
         style={styles.container}
         fallback={TouchableHighlight}
         underlayColor="#ccc">
+
+        {this.props.type !== 'community' && dot}
+
         <View style={styles.logoContainer}>
           <FadeIn placeholderStyle={{backgroundColor: Platform.OS === 'android' ? 'transparent' : '#eee'}}>
             <Image
-              resizeMode="contain"
-              source={{uri: smallLogo}}
-              style={styles.logo}
+                resizeMode="contain"
+                source={smallLogo}
+                style={styles.logo}
             />
           </FadeIn>
         </View>
@@ -51,17 +66,18 @@ export default class BreweryListItem extends React.Component {
           </RegularText>
 
           <RegularText style={styles.hours}>
-            {this._renderHoursText()}
+            {this.props.type === 'community' ? summary : this._renderHoursText()}
           </RegularText>
 
           <RegularText style={styles.address}>
-            {this._renderAddressText()}
+            {this.props.type === 'community' ? description : this._renderAddressText()}
           </RegularText>
         </View>
 
+        {this.props.type !== 'community' &&
         <View style={styles.buttonContainer}>
-          <MaterialIcons name="chevron-right" size={30} color="#b8c3c9" />
-        </View>
+          <MaterialIcons name="chevron-right" size={40} color="#b8c3c9" />
+        </View>}
       </TouchableNativeFeedback>
     );
   }
@@ -71,7 +87,7 @@ export default class BreweryListItem extends React.Component {
       isOpen,
       openingTimeToday,
       closingTimeToday,
-    } = this.props.brewery;
+    } = this.props.item;
 
     if (openingTimeToday && closingTimeToday) {
       return `${formatTime(openingTimeToday)} - ${formatTime(closingTimeToday)} (${isOpen ? 'Open' : 'Closed'})`
@@ -85,12 +101,12 @@ export default class BreweryListItem extends React.Component {
       address,
       distance,
       direction,
-    } = this.props.brewery;
+    } = this.props.item;
 
     let addressText = address;
 
     if (distance) {
-      addressText = `${distance} ${direction.exact} - ${addressText}`
+      addressText = `${addressText} (${distance}`
     }
 
     return addressText;
@@ -123,7 +139,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   logoContainer: {
-    padding: 15,
+    paddingTop: 5,
+    paddingBottom: 5,
+    marginLeft: 7,
+    marginRight: 10
+  },
+  availableDotContainer: {
+    width: 20
   },
   logo: {
     width: 60,

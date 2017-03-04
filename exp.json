@@ -1,12 +1,12 @@
 {
-  "name": "growler-prowler",
-  "description": "Find breweries around you in Vancouver!",
-  "slug": "growler-prowler",
+  "name": "Whatever the Mood",
+  "description": "You are the community!",
+  "slug": "wtm",
   "sdkVersion": "11.0.0",
   "version": "1.0.0",
   "orientation": "portrait",
   "primaryColor": "#cccccc",
-  "iconUrl": "https://s3.amazonaws.com/exp-brand-assets/ExponentEmptyManifest_192.png",
+  "iconUrl": "https://whatever-the-mood.firebaseapp.com/wtm-logo.png",
   "notification": {
     "iconUrl": "https://s3.amazonaws.com/exp-us-standard/placeholder-push-icon-blue-circle.png",
     "color": "#000000"

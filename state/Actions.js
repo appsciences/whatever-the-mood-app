@@ -21,47 +21,97 @@ export default class Actions {
     }
   }
 
-  static setBreweries(breweries) {
+  static setActivities(activities) {
     return {
-      type: ActionTypes.SET_BREWERIES,
-      breweries,
+      type: ActionTypes.SET_ACTIVITIES,
+      activities,
     }
   }
 
-  static setNearbyBreweries(breweryIds) {
+  static setNearbyActivities(activityIds) {
     return {
-      type: ActionTypes.SET_NEARBY_BREWERIES,
-      breweryIds,
+      type: ActionTypes.SET_NEARBY_ACTIVITIES,
+      activityIds,
     }
   }
 
-  static setVisitedBreweries(breweryIds) {
+  static setVisitedActivities(activityIds) {
     return {
-      type: ActionTypes.SET_VISITED_BREWERIES,
-      breweryIds,
+      type: ActionTypes.SET_VISITED_ACTIVITIES,
+      activityIds,
     }
   }
 
-  static toggleVisitedBrewery(breweryId) {
+  static toggleVisitedActivity(activityId) {
     return {
-      type: ActionTypes.TOGGLE_VISITED_BREWERY,
-      breweryId,
+      type: ActionTypes.TOGGLE_VISITED_ACTIVITY,
+      activityId,
     }
   }
 
-  static addVisitedBrewery(breweryId) {
+  static addVisitedActivity(activityId) {
     return {
-      type: ActionTypes.ADD_VISITED_BREWERY,
-      breweryId,
+      type: ActionTypes.ADD_VISITED_ACTIVITY,
+      activityId,
     }
   }
 
-  static removeVisitedBrewery(breweryId) {
+  static removeVisitedActivity(activityId) {
     return {
-      type: ActionTypes.REMOVE_VISITED_BREWERY,
-      breweryId,
+      type: ActionTypes.REMOVE_VISITED_ACTIVITY,
+      activityId,
     }
   }
+
+  static setChallenges(challenges) {
+    return {
+      type: ActionTypes.SET_CHALLENGES,
+      challenges,
+    }
+  }
+
+  static setNearbyChallenges(challengeIds) {
+    return {
+      type: ActionTypes.SET_NEARBY_CHALLENGES,
+      challengeIds,
+    }
+  }
+
+  static setVisitedChallenges(challengeIds) {
+    return {
+      type: ActionTypes.SET_VISITED_CHALLENGES,
+      challengeIds,
+    }
+  }
+
+  static toggleVisitedChallenge(challengeId) {
+    return {
+      type: ActionTypes.TOGGLE_VISITED_CHALLENGE,
+      challengeId,
+    }
+  }
+
+  static addVisitedChallenge(challengeId) {
+    return {
+      type: ActionTypes.ADD_VISITED_CHALLENGE,
+      challengeId,
+    }
+  }
+
+  static removeVisitedChallenge(challengeId) {
+    return {
+      type: ActionTypes.REMOVE_VISITED_CHALLENGE,
+      challengeId,
+    }
+  }
+
+  static setCommunity(community) {
+    return {
+      type: ActionTypes.SET_COMMUNITY,
+      community,
+    }
+  }
+
 
   static computeDistances() {
     return {

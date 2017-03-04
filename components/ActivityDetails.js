@@ -8,7 +8,11 @@ import {
   StyleSheet,
   Text,
   View,
+  TextInput
 } from 'react-native';
+
+import { withNavigation } from '@exponent/ex-navigation';
+
 import {
   MaterialIcons,
 } from '@exponent/vector-icons';
@@ -27,20 +31,26 @@ import {
 import {
   MapCard,
   DescriptionCard,
+  EnterCodeCard,
   SummaryCard,
   InstagramPhotosCard,
   VisitedCard,
 } from './DetailCards';
+
+
 import formatTime from '../util/formatTime';
 import Layout from '../constants/Layout';
 
-export default class BreweryDetails extends React.Component {
+@withNavigation
+export default class ActivityDetails extends React.Component {
   state = {
     scrollY: new Animated.Value(0),
+    code: ''
   }
 
+
   render() {
-    let { brewery } = this.props;
+    let { item } = this.props;
     let { scrollY } = this.state;
 
     return (
@@ -58,11 +68,11 @@ export default class BreweryDetails extends React.Component {
             <View style={styles.heroSpacer} />
 
             <View style={styles.contentContainerStyle}>
-              <MapCard brewery={brewery} onPress={this._handlePressDirections} />
-              <SummaryCard text={brewery.summary} />
-              <DescriptionCard text={brewery.description} />
-              <InstagramPhotosCard profile={brewery.instagram} />
-              <VisitedCard breweryId={this.props.brewery.id} />
+              <MapCard item={item} onPress={this._handlePressDirections} />
+              <SummaryCard text={item.summary} />
+              <DescriptionCard text={item.description} />
+              <InstagramPhotosCard profile={item.instagram} />
+              <EnterCodeCard onCodeEntered={ () =>   this.props.navigator.push('completeChallenge', {itemId: item.id}) }/>
             </View>
           </Animated.ScrollView>
         </View>
@@ -70,13 +80,13 @@ export default class BreweryDetails extends React.Component {
         {this._renderNavigationBarShadow()}
         {this._renderNavigationBar()}
 
-        <StatusBar barStyle={getBarStyle(brewery.color)} />
+        <StatusBar barStyle={getBarStyle(item.color)} />
       </View>
     );
   }
 
   _renderHeroHeader() {
-    let { brewery } = this.props;
+    let { item } = this.props;
     let { scrollY } = this.state;
 
     let logoScale = scrollY.interpolate({
@@ -107,13 +117,13 @@ export default class BreweryDetails extends React.Component {
       <View>
         <Animated.View style={[
           styles.heroBackground,
-          { backgroundColor: brewery.color,
+          { backgroundColor: item.color,
             transform: [{translateY: heroBackgroundTranslateY}] }]}
          />
 
         <View style={styles.hero}>
           <Animated.Image
-            source={{uri: brewery.logo}}
+              source={item.logo}
             style={[styles.heroImage, {opacity: logoOpacity, transform: [{scale: logoScale}, {translateY: logoTranslateY}]}]}
             resizeMode="contain"
           />
@@ -132,7 +142,7 @@ export default class BreweryDetails extends React.Component {
     let {
       color,
       accentColor,
-    } = this.props.brewery;
+    } = this.props.item;
 
     let {
       scrollY,
@@ -195,7 +205,7 @@ export default class BreweryDetails extends React.Component {
       isOpeningLater,
       name,
       openingTimeToday,
-    } = this.props.brewery;
+    } = this.props.item;
 
     let { scrollY } = this.state;
 
@@ -252,7 +262,7 @@ export default class BreweryDetails extends React.Component {
       address,
       postalCode,
       city,
-    } = this.props.brewery;
+    } = this.props.item;
 
     let daddr = encodeURIComponent(`${address} ${postalCode}, ${city}`);
 
@@ -280,7 +290,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAFAFA',
   },
   contentContainerStyle: {
-    paddingBottom: 20,
+    padding: 20,
     backgroundColor: '#FAFAFA',
     minHeight: Layout.window.height - HeroHeight,
   },

@@ -22,7 +22,7 @@ import TouchableNativeFeedback from '@exponent/react-native-touchable-native-fee
 import Modal from 'react-native-root-modal';
 
 import Actions from '../state/Actions';
-import BreweryList from '../components/BreweryList';
+import ItemList from '../components/ItemList';
 import Layout from '../constants/Layout';
 import {
   BoldText,
@@ -36,11 +36,15 @@ const MenuOptions = [
   'Unvisited'
 ];
 
+import activities from '../data/activities';
+import challenges from '../data/challenges';
+import community from '../data/community';
+
 const maxOffset = NavigationBar.DEFAULT_HEIGHT - Constants.statusBarHeight;
 const minScrollViewHeight = 100;
 
 @connect()
-export default class BreweryListScreen extends React.Component {
+export default class ListScreen extends React.Component {
   static route = {
     navigationBar: {
       visible: false,
@@ -147,12 +151,19 @@ export default class BreweryListScreen extends React.Component {
       )
     };
 
+    const list = {
+      'activity': activities,
+      'challenge': challenges,
+      community
+    }[this.props.route.params.type];
+
+
     return (
       <View style={styles.container}>
-        {selectedOption === 'All' && <BreweryList {...defaultListProps} />}
-        {selectedOption === 'Nearby' && <BreweryList {...defaultListProps} nearby />}
-        {selectedOption === 'Visited' && <BreweryList {...defaultListProps} visited />}
-        {selectedOption === 'Unvisited' && <BreweryList {...defaultListProps} notVisited />}
+        <ItemList
+            {...defaultListProps}
+            list={list}
+            type={this.props.route.params.type} />
 
         {this._renderNavigationBar()}
 
@@ -281,6 +292,12 @@ export default class BreweryListScreen extends React.Component {
       contentTranslateY,
     } = this._getNavigationBarAnimatedStyles(maxScrollY);
 
+    const header = {
+        'activity': `${this.state.selectedOption} Tone Setters`,
+        'challenge': `${this.state.selectedOption} Love Challenges`,
+        'community': 'Community'
+      }[this.props.route.params.type];
+
     return (
       <Animated.View
         key="navbar"
@@ -295,15 +312,15 @@ export default class BreweryListScreen extends React.Component {
           ]}>
           <TouchableWithoutFeedback
             hitSlop={{left: 40, top: 30, right: 40, bottom: 10}}
-            onPress={this._handleToggleMenu}>
+            onPress={this.props.route.params.type !== 'community' ? this._handleToggleMenu : undefined}>
             <View style={{flexDirection: 'row'}}>
               <BoldText style={styles.navigationBarTitle}>
-                {this.state.selectedOption} Breweries
+                {header}
               </BoldText>
 
-              <Animated.View style={{marginLeft: 2, marginTop: 2, transform: [{rotate: arrowRotation}]}}>
+              {this.props.route.params.type !== 'community' && <Animated.View style={{marginLeft: 2, marginTop: 2, transform: [{rotate: arrowRotation}]}}>
                 <MaterialIcons name="chevron-right" size={22} />
-              </Animated.View>
+              </Animated.View>}
             </View>
           </TouchableWithoutFeedback>
         </Animated.View>
@@ -390,6 +407,7 @@ const styles = StyleSheet.create({
   navigationBarTitle: {
     fontSize: 17,
     letterSpacing: -0.5,
+      fontFamily: 'Quicksand-Bold',
   },
   navigationBarRightButton: {
     position: 'absolute',

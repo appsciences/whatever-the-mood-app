@@ -5,6 +5,7 @@ import {
   Platform,
   StyleSheet,
   View,
+    TextInput,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Facebook } from 'exponent';
@@ -29,10 +30,18 @@ export default class AuthenticationScreen extends React.Component {
       <View style={styles.container}>
         <FadeIn placeholderStyle={{backgroundColor: 'transparent'}}>
           <Image
-            style={{width: 150, height: 244, marginBottom: 30,}}
-            source={require('../assets/images/logo.png')}
+            style={{width: 300, height: 244, marginBottom: 30,}}
+            source={require('../assets/images/wtm-logo.png')}
           />
         </FadeIn>
+        <View style={styles.codeInputView}>
+
+          <TextInput
+              style={styles.codeInput}
+
+              placeholder={'Invitation Code'}
+          />
+          </View>
         <TouchableNativeFeedback onPress={this._signInWithFacebook}>
           <View style={styles.facebookButton}>
             <RegularText style={styles.facebookButtonText}>
@@ -89,6 +98,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
     width: 250,
+  },
+  codeInputView: {
+    padding: 20,
+    alignItems: 'center',
+    width: 290,
+  },
+  codeInput: {
+    borderWidth: 1,
+    borderColor: 'lightgray',
+    borderRadius: 5,
+    width: 250,
+    padding:20
   },
   guestButton: {
     marginTop: 15,

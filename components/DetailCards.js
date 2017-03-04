@@ -10,6 +10,8 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
+TextInput,
+Button
 } from 'react-native';
 import { connect } from 'react-redux';
 import FadeIn from '@exponent/react-native-fade-in-image';
@@ -29,8 +31,15 @@ import Layout from '../constants/Layout';
 import Colors from '../constants/Colors';
 
 export class DescriptionCard extends React.Component {
+
+  static route = {
+    navigationBar: {
+      visible: false,
+    }
+  }
+
   render() {
-    let { text } = this.props;
+    let { code } = this.props;
 
     return (
       <View>
@@ -210,7 +219,7 @@ export class MapCard extends React.Component {
       city,
       postalCode,
       name,
-    } = this.props.brewery;
+    } = this.props.item;
 
     return (
       <View style={[styles.card, styles.mapContainer]}>
@@ -256,7 +265,7 @@ export class MapCard extends React.Component {
       name,
       latitude,
       longitude,
-    } = this.props.brewery;
+    } = this.props.item;
 
     return (
       <MapView
@@ -281,9 +290,17 @@ export class MapCard extends React.Component {
 
 @connect((data, props) => VisitedCard.getDataProps(data, props))
 export class VisitedCard extends React.Component {
+
+
+  constructor(props) {
+    super(props);
+    this.state = { code: '' };
+  }
+
   static getDataProps(data, props) {
-    let { breweryId } = props;
-    let isVisited = data.breweries.visited.includes(breweryId);
+    let { itemId } = props;
+    //TODO: need to fix this and make it generic
+    let isVisited = data.activites.visited.includes(itemId);
 
     return {
       isVisited,
@@ -292,9 +309,9 @@ export class VisitedCard extends React.Component {
 
   _onToggleVisited = () => {
     if (this.props.isVisited) {
-      this.props.dispatch(Actions.removeVisitedBrewery(this.props.breweryId));
+      this.props.dispatch(Actions.removeVisitedItem(this.props.itemId));
     } else {
-      this.props.dispatch(Actions.addVisitedBrewery(this.props.breweryId));
+      this.props.dispatch(Actions.addVisitedItem(this.props.itemId));
     }
   }
 
@@ -329,6 +346,59 @@ export class VisitedCard extends React.Component {
     );
   }
 }
+
+export class EnterCodeCard extends React.Component {
+
+  static route = {
+    navigationBar: {
+      visible: false,
+    }
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = { code: '' };
+  }
+
+
+  render() {
+
+    return (
+        <View>
+          <View style={styles.cardLabel}>
+            <BoldText style={styles.cardLabelText}>
+              Enter Code to Complete Challege
+            </BoldText>
+          </View>
+
+          <View style={styles.card}>
+            <View style={styles.cardBody}>
+              <TextInput
+                  style={{
+                    borderWidth: 1,
+    borderColor: 'lightgray',
+    borderRadius: 5,
+    width: 250,
+    height: 40,
+    padding: 5
+
+                    }}
+                  value={this.state.code}
+                  onChangeText={(code) => {
+                    this.setState({code});
+                    code.length > 3 &&
+                      this.props.onCodeEntered();
+                  }}
+                  placeholder={'Challenge code'}
+              />
+            </View>
+          </View>
+        </View>
+    );
+  }
+
+}
+
 
 const styles = StyleSheet.create({
   map: {

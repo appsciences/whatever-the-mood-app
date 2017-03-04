@@ -9,7 +9,7 @@ import {
   TabNavigation,
   TabNavigationItem,
 } from '@exponent/ex-navigation';
-import { MaterialIcons } from '@exponent/vector-icons';
+import { FontAwesome } from '@exponent/vector-icons';
 
 import Colors from '../constants/Colors';
 import Router from './Router';
@@ -21,7 +21,7 @@ const defaultRouteConfig = {
   },
 };
 
-export default class TabNavigationLayout extends React.Component {
+export default class    TabNavigationLayout extends React.Component {
   static route = {
     navigationBar: {
       visible: false,
@@ -32,35 +32,39 @@ export default class TabNavigationLayout extends React.Component {
     return (
       <TabNavigation
         tabBarColor={Colors.tabBar}
+        navigatorUID="main"
         tabBarHeight={48}
-        initialTab="list">
+        initialTab="mood">
+
 
         <TabNavigationItem
-          id="list"
-          renderIcon={isSelected => this._renderIcon('view-list', isSelected)}>
+          id="mood"
+          renderIcon={isSelected => this._renderIcon('heart', isSelected)}>
           <StackNavigation
             defaultRouteConfig={defaultRouteConfig}
-            initialRoute={Router.getRoute('list')}
+            initialRoute={Router.getRoute('mood')}
           />
         </TabNavigationItem>
 
+
         <TabNavigationItem
-          id="map"
-          renderIcon={isSelected => this._renderIcon('map', isSelected)}>
+          id="profile"
+          renderIcon={isSelected => this._renderIcon('user', isSelected)}>
           <StackNavigation
             defaultRouteConfig={defaultRouteConfig}
-            initialRoute={Router.getRoute('map')}
+            initialRoute={Router.getRoute('profile')}
           />
         </TabNavigationItem>
 
-        <TabNavigationItem
-          id="settings"
-          renderIcon={isSelected => this._renderIcon('settings', isSelected)}>
-          <StackNavigation
-            defaultRouteConfig={defaultRouteConfig}
-            initialRoute={Router.getRoute('settings')}
-          />
-        </TabNavigationItem>
+          <TabNavigationItem
+              id="community"
+              renderIcon={isSelected => this._renderIcon('users', isSelected)}>
+              <StackNavigation
+                  defaultRouteConfig={defaultRouteConfig}
+                  initialRoute={Router.getRoute('community', {type: 'community'})}
+              />
+          </TabNavigationItem>
+
       </TabNavigation>
     );
   }
@@ -70,7 +74,7 @@ export default class TabNavigationLayout extends React.Component {
 
     return (
       <View style={styles.tabItemContainer}>
-        <MaterialIcons name={iconName} size={32} color={color} />
+        <FontAwesome name={iconName} size={32} color={color} />
       </View>
     );
   }

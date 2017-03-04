@@ -3,19 +3,29 @@ import {
 } from '@exponent/ex-navigation';
 
 import AuthenticationScreen from '../screens/AuthenticationScreen';
-import BreweryDetailsScreen from '../screens/BreweryDetailsScreen';
-import BreweryListScreen from '../screens/BreweryListScreen';
-import BreweryMapScreen from '../screens/BreweryMapScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import ActivityDetailsScreen from '../screens/ActivityDetailsScreen';
+import ChallengeDetailsScreen from '../screens/ChallengeDetailsScreen';
+import MapScreen from '../screens/MapScreen';
+import MoodSelect from '../screens/MoodSelect';
 import TabNavigationLayout from './TabNavigationLayout';
+import ChallengeComplete from '../screens/ChallengeComplete';
+import Profile from '../screens/Profile';
+import ValuesScreen from '../screens/Values';
+import ListScreen from '../screens/ListScreen';
 
 export default createRouter(() => ({
   authentication: () => AuthenticationScreen,
-  details: () => BreweryDetailsScreen,
-  list: () => BreweryListScreen,
-  map: () => BreweryMapScreen,
-  settings: () => SettingsScreen,
+  activityDetails: () => ActivityDetailsScreen,
+  challengeDetails: () => ChallengeDetailsScreen,
+  values: () => ValuesScreen,
+  mood: () => MoodSelect,
+  list: () => ListScreen,
+  challengeList: () => ListScreen,
+  community: () => ListScreen,
+  map: () => MapScreen,
+  profile: () => Profile,
   tabNavigation: () => TabNavigationLayout,
+  completeChallenge: () => ChallengeComplete,
 }), {
   ignoreSerializableWarnings: true,
 });

@@ -13,11 +13,21 @@ import { connect } from 'react-redux';
 import Actions from '../state/Actions';
 import { RegularText, BoldText } from '../components/StyledText';
 
-@connect(data => SettingsScreen.getDataProps(data))
-export default class SettingsScreen extends React.Component {
+import {
+    MapCard,
+    DescriptionCard,
+    EnterCodeCard,
+    SummaryCard,
+    InstagramPhotosCard,
+    VisitedCard,
+} from '../components/DetailCards';
+
+
+@connect(data => ProfileScreen.getDataProps(data))
+export default class ProfileScreen extends React.Component {
   static route = {
     navigationBar: {
-      title: 'Options',
+      title: 'Profile',
     },
   }
 
@@ -49,9 +59,29 @@ export default class SettingsScreen extends React.Component {
       <View>
         <View style={styles.cardLabel}>
           <BoldText style={styles.cardLabelText}>
-            Your account
+            Points
           </BoldText>
         </View>
+
+        <SummaryCard text="You currently have 150 points!" />
+
+        <View style={styles.cardLabel}>
+          <BoldText style={styles.cardLabelText}>
+            Next WTM Event
+          </BoldText>
+        </View>
+
+
+        <SummaryCard text="WTM silent disco party for community luminaries like yourself! Wednesday Feb 15th, 9pm @ The Bonnie. Only 50 more points to unlock the secret entry code!" />
+
+        <View style={styles.cardLabel}>
+          <BoldText style={styles.cardLabelText}>
+            Past Adventures
+          </BoldText>
+        </View>
+
+
+        <SummaryCard text="Visited Cody @ The Bonnie and completed the secret challenge (150 points)." />
 
         <View style={styles.card}>
           <TouchableNativeFeedback
@@ -88,6 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FBFBFB',
   },
   card: {
+    marginTop: 50,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#E8E8E8',
     backgroundColor: '#fff',
@@ -103,6 +134,10 @@ const styles = StyleSheet.create({
   },
   cardLabelText: {
     fontSize: 15,
+    color: '#313131',
+  },
+  cardLabelTex2: {
+    fontSize: 12,
     color: '#313131',
   },
   signOutText: {

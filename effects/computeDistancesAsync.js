@@ -42,6 +42,6 @@ export default async function computeDistancesAsync({dispatch, getState}) {
     sortBy(brewery => brewery.distance).
     map(brewery => brewery.id);
 
-  dispatch(Actions.setBreweries(breweriesWithDistances));
-  dispatch(Actions.setNearbyBreweries(nearbyBreweries));
+  dispatch(Actions.setActivities(breweriesWithDistances));
+  dispatch(Actions.setNearbyActivities(nearbyBreweries));
 }

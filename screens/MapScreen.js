@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 import { Components } from 'exponent';
 const { MapView } = Components;
 
-@connect(data => BreweryMapScreen.getDataProps(data))
-export default class BreweryMapScreen extends React.Component {
+@connect(data => MapScreen.getDataProps(data))
+export default class MapScreen extends React.Component {
   static route = {
     navigationBar: {
       visible: false,
