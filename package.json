@@ -1,8 +1,8 @@
 {
-  "name": "growler-prowler",
+  "name": "WtM 0.3",
   "version": "0.0.0",
-  "description": "Hello Exponent!",
-  "author": "exponent.team@gmail.com",
+  "description": "Whatever the Mood",
+  "author": "leopelekh@gmail.com",
   "private": true,
   "main": "main.js",
   "scripts": {

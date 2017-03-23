@@ -12,10 +12,12 @@ import ChallengeComplete from '../screens/ChallengeComplete';
 import Profile from '../screens/Profile';
 import ValuesScreen from '../screens/Values';
 import ListScreen from '../screens/ListScreen';
+import IntroScreen from '../screens/Intro';
 
 export default createRouter(() => ({
   authentication: () => AuthenticationScreen,
   activityDetails: () => ActivityDetailsScreen,
+  intro: () => IntroScreen,
   challengeDetails: () => ChallengeDetailsScreen,
   values: () => ValuesScreen,
   mood: () => MoodSelect,
