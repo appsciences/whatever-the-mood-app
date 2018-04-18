@@ -11,18 +11,18 @@ import {
     TextInput
 } from 'react-native';
 
-import { withNavigation } from '@exponent/ex-navigation';
+import { withNavigation } from '@expo/ex-navigation';
 
 import {
     MaterialIcons,
-} from '@exponent/vector-icons';
-import Exponent, {
-    Components,
-} from 'exponent';
-import TouchableNativeFeedback from '@exponent/react-native-touchable-native-feedback-safe';
+} from '@expo/vector-icons';
+import Expo, {
+    LinearGradient
+} from 'expo';
+import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedback-safe';
 import {
     NavigationBar,
-} from '@exponent/ex-navigation';
+} from '@expo/ex-navigation';
 
 import {
     BoldText,
@@ -133,7 +133,7 @@ export default class ChallengeDetails extends React.Component {
 
     return (
         <Animated.View style={[styles.navigationBarShadowContainer, {opacity}]}>
-          <Components.LinearGradient
+          <LinearGradient
               colors={['rgba(0,0,0,0.08)', 'transparent']}
               style={styles.navigationBarShadow}
           />
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: NavigationBar.DEFAULT_HEIGHT,
     alignItems: 'center',
-    paddingTop: Exponent.Constants.statusBarHeight,
+    paddingTop: Expo.Constants.statusBarHeight,
     paddingHorizontal: 5,
   },
 });

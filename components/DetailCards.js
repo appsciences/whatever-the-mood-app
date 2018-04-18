@@ -14,13 +14,13 @@ TextInput,
 Button
 } from 'react-native';
 import { connect } from 'react-redux';
-import FadeIn from '@exponent/react-native-fade-in-image';
-import ReadMore from '@exponent/react-native-read-more-text';
-import TouchableNativeFeedback from '@exponent/react-native-touchable-native-feedback-safe';
-import { Components } from 'exponent';
-import { openImageGallery } from '@exponent/react-native-image-gallery';
-import { MaterialIcons } from '@exponent/vector-icons';
-const { MapView } = Components;
+import FadeIn from '@expo/react-native-fade-in-image';
+import ReadMore from '@expo/react-native-read-more-text';
+import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedback-safe';
+import { MapView } from 'expo';
+import { openImageGallery } from '@expo/react-native-image-gallery';
+import { MaterialIcons } from '@expo/vector-icons';
+// const { MapView } = Components;
 
 import Actions from '../state/Actions';
 import {

@@ -1,6 +1,6 @@
 import {
   createRouter,
-} from '@exponent/ex-navigation';
+} from '@expo/ex-navigation';
 
 import AuthenticationScreen from '../screens/AuthenticationScreen';
 import ActivityDetailsScreen from '../screens/ActivityDetailsScreen';

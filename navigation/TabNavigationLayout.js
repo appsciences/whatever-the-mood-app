@@ -8,8 +8,8 @@ import {
   StackNavigation,
   TabNavigation,
   TabNavigationItem,
-} from '@exponent/ex-navigation';
-import { FontAwesome } from '@exponent/vector-icons';
+} from '@expo/ex-navigation';
+import { FontAwesome } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 import Router from './Router';

@@ -11,7 +11,7 @@ import { RegularText } from '../components/StyledText';
 import Router from '../navigation/Router';
 
 
-import TouchableNativeFeedback from '@exponent/react-native-touchable-native-feedback-safe';
+import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedback-safe';
 
 const {
     View,

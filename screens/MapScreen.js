@@ -5,8 +5,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import { Components } from 'exponent';
-const { MapView } = Components;
+import { MapView } from 'expo';
+// const { MapView } = Components;
 
 @connect(data => MapScreen.getDataProps(data))
 export default class MapScreen extends React.Component {

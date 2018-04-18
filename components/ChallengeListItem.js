@@ -5,7 +5,7 @@ import {
     Text,
     TouchableHighlight,
 } from 'react-native';
-import TouchableNativeFeedback from '@exponent/react-native-touchable-native-feedback-safe';
+import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedback-safe';
 
 import Layout from '../constants/Layout';
 

@@ -11,9 +11,9 @@ import { connect } from 'react-redux';
 
 import { RegularText } from '../components/StyledText';
 
-import TouchableNativeFeedback from '@exponent/react-native-touchable-native-feedback-safe';
+import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedback-safe';
 
-import { withNavigation } from '@exponent/ex-navigation';
+import { withNavigation } from '@expo/ex-navigation';
 
 const {
     View,

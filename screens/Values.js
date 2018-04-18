@@ -12,7 +12,7 @@ import {
 
 import { RegularText } from '../components/StyledText';
 
-import TouchableNativeFeedback from '@exponent/react-native-touchable-native-feedback-safe';
+import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedback-safe';
 
 const {
     View,
